@@ -1,0 +1,38 @@
+# DOCKER
+
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install -y docker-ce
+sudo systemctl start docker
+
+# DOCKER COMPOSE
+
+curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+chmod +x /usr/bin/docker-compose
+docker-compose version
+
+yum install git
+git clone https://github.com/zabbix/zabbix-docker.git
+
+
+# cd zabbix-docker / cd server-mysql / cd centos / cd .. / ls / docker ps / vim docker-entrypoint.sh
+
+# docker-compose -f docker-compose_v3_alpine_mysql_latest.yaml up -d
+
+# DELETE
+
+docker-compose -f docker-compose_v3_alpine_mysql_latest.yaml kill
+git reset --hard
+git checkout trunk
+
+
+
+
+
+
+yum -y update
+curl -sSL https://get.docker.com/ | bash
+systemctl enable docker
+systemctl status docker
+systemctl start docker
